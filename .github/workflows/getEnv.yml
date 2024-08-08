@@ -36,7 +36,21 @@ jobs:
           --query Content \
           --output text .env
 
+    - name: Replace API_KEY in .env file
+      id: replace_keys
+      run: |
+        sed -i 'POSTGRES_URL=postgresql://postgres:postgres@postgres:5432/postgres' .env
+        sed -i 'REDIS_HOST=redis' .env
+        sed -i 'REDIS_PORT=6379' .env
+        sed -i 'REDIS_DB=0' .env
+        sed -i 'RESIS_USERNAME=' .env
+        sed -i 'RABBIT_MQ_HOST=rabbitmq' .env
+        sed -i 'RABBIT_MQ_PASSWORD=guest' .env
+        sed -i 'RABBIT_MQ_USERNAME=guest' .env
+        sed -i 'RABBIT_MQ_PORT=5672' .env
+
     - name: Use .env file
       run: |
         source .env
         echo "CFO_USER_PASSWORD=$CFO_USER_PASSWORD"
+        echo "RABBIT_MQ_PORT=$RABBIT_MQ_PORT"
