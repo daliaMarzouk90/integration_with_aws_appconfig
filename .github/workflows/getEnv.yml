@@ -39,4 +39,4 @@ jobs:
     - name: Use .env file
       run: |
         source .env
-        echo "MY_ENV_VAR=$MY_ENV_VAR"
+        echo "CFO_USER_PASSWORD=$CFO_USER_PASSWORD"
