@@ -28,17 +28,13 @@ jobs:
         config_profile_id=q2oavmr
         client_id=settle_payment_management-dev
         
-        config=$(aws appconfig get-configuration \
+        aws appconfig get-configuration \
           --application $app_id \
           --environment $env_id \
           --configuration $config_profile_id \
           --client-id $client_id \
           --query Content \
-          --output text)
-        
-        echo "$config" > .env
-        
-        echo "Config retrieved: $config"
+          --output text .env
 
     - name: Use .env file
       run: |
